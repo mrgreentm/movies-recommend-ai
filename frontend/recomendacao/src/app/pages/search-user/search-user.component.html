@@ -1,0 +1,48 @@
+<section class="container">
+  <mat-card appearance="outlined">
+    <mat-card-content>
+      <section class="recommendation-type">
+        <p>
+          Escolha o tipo de recomendação:
+          <mat-button-toggle-group [(ngModel)]="recommendationType">
+            <mat-button-toggle value="collaborative"
+              >colaborativa</mat-button-toggle
+            >
+            <mat-button-toggle value="content-based"
+              >baseada em conteúdo</mat-button-toggle
+            >
+          </mat-button-toggle-group>
+        </p>
+      </section>
+
+      <section class="recommendation-data">
+        <p>
+          número de recomendações: <b>{{ value }}</b>
+        </p>
+
+        <mat-slider
+          [disabled]="disabled"
+          [max]="max"
+          [min]="min"
+          [step]="step"
+          [discrete]="thumbLabel"
+          [showTickMarks]="showTicks"
+          #slider
+        >
+          <input [(ngModel)]="value" matSliderThumb />
+        </mat-slider>
+        <mat-form-field>
+          @if (recommendationType == 'content-based') {
+            <mat-label>digite o ID do filme</mat-label>
+          } @else {
+            <mat-label>digite o ID do usuário</mat-label>
+          }
+          <input matInput placeholder="Ex. 1" [(ngModel)]="idResource">
+        </mat-form-field>
+        <button (click)="getRecommendation()" [disabled]="!idResource" mat-flat-button>buscar recomendações</button>
+
+
+      </section>
+    </mat-card-content>
+  </mat-card>
+</section>

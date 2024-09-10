@@ -1,0 +1,19 @@
+<section class="container">
+  <h3>recomendações para você:</h3>
+  <div class="cards-container">
+    @for (recommendation of (recommendations$ | async ) ; track recommendation) {
+      <mat-card appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>{{ recommendation.title }}</mat-card-title>
+          <mat-card-subtitle>{{ recommendation.movie_id }}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="recommendation.image_url" />
+        <mat-card-content>
+          <p>
+            {{ recommendation.motives }}
+          </p>
+        </mat-card-content>
+      </mat-card>
+      }
+  </div>
+</section>
